@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Try a Mechanical Keyboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.min.css" />
+</head>
+<body class='sans-serif bg-black-90 white-90'>
+  <div>
+    <article class="mw7 center ph3 ph5-ns tc br2 pv5 mb5">
+      <h1 class="fw6 f3 f2-ns lh-title mt0 mb3">
+        Press any key.
+      </h1>
+      <h2 class="fw2 f5 lh-copy mt0 mb3 measure center">
+        Ever wondered why your friends had so much fun on their mechanical keyboards? Now you can try out a mechical keyboard right at your desk!
+      </h2>
+    </article>
+  </div>
+  <div class="js-sound-container"></div>
+  <script>
+
+    /**
+    * Const.
+    */
+
+    const SOUND_URL = "http://soundbible.com/mp3/50_sniper_shot-Liam-2028603980.mp3";
+    const soundContainerElement = document.querySelector('.js-sound-container');
+
+    /**
+    * Create audio element.
+    */
+
+    const createAudioElement = function createAudioElement() {
+      const sound = document.createElement('audio');
+      sound.src = SOUND_URL;
+      sound.type = "audio/mpeg";
+      sound.style = "display: none";
+      sound.onended = function onSoundEnded() {
+        sound.parentNode.removeChild(sound);
+      };
+      soundContainerElement.appendChild(sound);
+      sound.play();
+    }
+
+    /**
+    * When button is pressed.
+    */
+
+    document.addEventListener('keydown', event => {
+      createAudioElement();
+    });
+
+  </script>
+</body>
+</html>
